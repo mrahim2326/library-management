@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reading Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link 
+  rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      background-image: url(wind.gif);
+      background-repeat: no-repeat;
+      background-size:cover;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen text-gray-800 ">
+
+  <!-- Side bar -->
+  <main class="w-18  bg-opacity-50 bg-opacity-40 bg-white backdrop-blur-lg border-r 
+ grid gap-6 items-center  py-6 fixed h-full ">
+    <div class="">
+        <img src="library.png" alt="">
+    </div>
+       <div class=" flex flex-col items-center gap-4">
+       <a class="bg-gray-50 bg-opacity-40 p-2 rounded-md shadow-lg" href=""><i class="fa-solid fa-user text-green-900"></i></a>
+       <a class="bg-gray-50 bg-opacity-40 p-2 rounded-md shadow-lg" href=""><i class="fa-solid fa-clock text-green-900"></i></a>
+       <a class="bg-gray-50 bg-opacity-40 p-2 rounded-md shadow-lg" href=""><i class="fa-solid fa-book-open text-green-900"></i></a>
+    </div>
+    <div class=" flex flex-col items-center gap-4">
+         <a class="bg-gray-50 bg-opacity-40 p-2 rounded-md shadow-lg" href=""><i class="fa-solid fa-bars text-green-900"></i></a>
+    </div>
+</main>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex ml-18 flex-col md:flex-row bg-opacity-40 bg-white backdrop-blur-lg">
+    
+    <!-- Left section -->
+    <section class="flex-1 p-10 space-y-8 text-green-950">
+      <div>
+        <h1 class="text-3xl text-green-950 font-semibold">Happy reading, <span class="text-green-900">Harvey</span></h1>
+        <p class=" mt-2 text-green-950 max-w-lg">Wow! you’ve delved deep into the wizarding world’s secrets. Have Harry’s parents died yet? Oops, looks like you’re not there yet. Get reading now!</p>
+        <button class="mt-5 px-5 py-2 bg-[#1e1e2f] text-white rounded-lg shadow">Start reading →</button>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold mb-3">Popular Now</h2>
+        <div class="flex space-x-4 overflow-x-auto pb-2">
+          <img src="bonolota.jpg" class="w-32 h-48 rounded-md shadow" alt="">
+          <img src="himu.jpg" class="w-32 h-48 rounded-md shadow" alt="">
+          <img src="misir.jpg" class="w-32 h-48 rounded-md shadow" alt="">
+          <img src="ws.jpg" class="w-32 h-48 rounded-md shadow" alt="">
+          <img src="dark.jpg" class="w-32 h-48 rounded-md shadow" alt="">
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold mb-3">New Book Collection</h2>
+        <div class="flex items-center space-x-3">
+          <img src="pos.jpg" class="w-16 h-20 rounded shadow" alt="">
+          <div>
+            <p class="font-medium"><span class="font-bold text-md">Priotomo osuk She</span> Sahadat Hussain</p>
+            <p class="text-green-900 text-sm">8 chapters each vol</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right section -->
+   <section class="w-full md:w-[420px] bg-white bg-opacity-40 p-10 border-l">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <img src="https://i.pravatar.cc/50" class="w-10 h-10 rounded-full" alt="">
+          <span class="font-medium">Alexander Mark</span>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h3 class="text-xl font-semibold">Himu Rimandeg</h3>
+        <p class="text-sm text-gray-500 mt-1">154 / 300 pages</p>
+        <img src="himu.jpg" alt="Book" class="rounded-lg mt-4 shadow">
+        <p class="text-gray-500 text-sm mt-4">Harry as he returns to Hogwarts school of witchcraft and wizardry for his 2nd year, only to discover that...</p>
+      </div>
+
+      <div class="mt-8">
+        <h4 class="font-semibold mb-2">Schedule Reading</h4>
+        <div class="flex space-x-4 text-sm text-gray-600">
+          <span class="text-red-500 font-semibold">Sun</span>
+          <span>Mon</span>
+          <span class="bg-gray-200 px-2 py-1 rounded">Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <h4 class="font-semibold mb-3">Reader Friends</h4>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <img src="https://i.pravatar.cc/40?img=2" class="w-10 h-10 rounded-full" alt="">
+            <div>
+              <p class="font-medium">Roberto Jordan</p>
+              <p class="text-sm text-gray-600">“What a delightful magical chapter it is! It indeed transports readers to the wizarding world.”</p>
+              <p class="text-xs text-red-500 mt-1">→ Chapter Five: Diagon Alley</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <img src="https://i.pravatar.cc/40?img=3" class="w-10 h-10 rounded-full" alt="">
+            <div>
+              <p class="font-medium">Anna Henry</p>
+              <p class="text-sm text-gray-600">“I finished reading the chapter last night and...”</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
