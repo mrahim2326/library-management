@@ -30,8 +30,8 @@
   <!-- Side bar -->
   <main class="w-18  bg-opacity-50 bg-opacity-40 bg-white backdrop-blur-lg border-r 
  grid gap-6 items-center  py-6 fixed h-full ">
-    <div class="">
-        <img src="library.png" alt="">
+    <div class="flex flex-col items-center gap-4">
+       <a class="bg-gray-50 bg-opacity-40 p-2 rounded-md shadow-lg" href="seconP.html"><i class="fa-solid fa-cloud-upload-alt text-green-900"></i></a> 
     </div>
        <div class=" flex flex-col items-center gap-4">
        <a class="bg-gray-50 bg-opacity-40 p-2 rounded-md shadow-lg" href=""><i class="fa-solid fa-user text-green-900"></i></a>
@@ -47,11 +47,12 @@
   <main class="flex-1 flex ml-18 flex-col md:flex-row bg-opacity-40 bg-white backdrop-blur-lg">
     
     <!-- Left section -->
+     <section class="grid grid-col items-center gap-4">
     <section class="flex-1 p-10 space-y-8 text-green-950">
       <div>
         <h1 class="text-3xl text-green-950 font-semibold">Happy reading, <span class="text-green-900">Harvey</span></h1>
         <p class=" mt-2 text-green-950 max-w-lg">Wow! you’ve delved deep into the wizarding world’s secrets. Have Harry’s parents died yet? Oops, looks like you’re not there yet. Get reading now!</p>
-        <button class="mt-5 px-5 py-2 bg-[#1e1e2f] text-white rounded-lg shadow">Start reading →</button>
+        <button class="mt-5 px-5 py-2 bg-green-950 text-white rounded-lg shadow">Start reading →</button>
       </div>
 
       <div>
@@ -76,59 +77,101 @@
         </div>
       </div>
     </section>
+    <!-- publish section -->
+<section class="items-center">
+  <div class="items-center justify-center">
 
-    <!-- Right section -->
-   <section class="w-full md:w-[420px] bg-white bg-opacity-40 p-10 border-l">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-          <img src="https://i.pravatar.cc/50" class="w-10 h-10 rounded-full" alt="">
-          <span class="font-medium">Alexander Mark</span>
-        </div>
-      </div>
+  <div class="grid-cols-1 justify-center
+    grid-rows-1 rounded-lg p-6 w-full grid gap-4 items-center  py-6">
+    <div id="postContainer" class="gap-4 grid lg:grid-cols-2  justify-center"></div>
+  </div>
 
-      <div class="mt-6">
-        <h3 class="text-xl font-semibold">Himu Rimandeg</h3>
-        <p class="text-sm text-gray-500 mt-1">154 / 300 pages</p>
-        <img src="himu.jpg" alt="Book" class="rounded-lg mt-4 shadow">
-        <p class="text-gray-500 text-sm mt-4">Harry as he returns to Hogwarts school of witchcraft and wizardry for his 2nd year, only to discover that...</p>
-      </div>
+  <script>
+    const postContainer = document.getElementById("postContainer");
+    let posts = JSON.parse(localStorage.getItem("sharedPosts")) || [];
 
-      <div class="mt-8">
-        <h4 class="font-semibold mb-2">Schedule Reading</h4>
-        <div class="flex space-x-4 text-sm text-gray-600">
-          <span class="text-red-500 font-semibold">Sun</span>
-          <span>Mon</span>
-          <span class="bg-gray-200 px-2 py-1 rounded">Tue</span>
-          <span>Wed</span>
-          <span>Thu</span>
-          <span>Fri</span>
-          <span>Sat</span>
-        </div>
-      </div>
+    renderPosts();
 
-      <div class="mt-8">
-        <h4 class="font-semibold mb-3">Reader Friends</h4>
-        <div class="space-y-4">
-          <div class="flex items-start space-x-3">
-            <img src="https://i.pravatar.cc/40?img=2" class="w-10 h-10 rounded-full" alt="">
-            <div>
-              <p class="font-medium">Roberto Jordan</p>
-              <p class="text-sm text-gray-600">“What a delightful magical chapter it is! It indeed transports readers to the wizarding world.”</p>
-              <p class="text-xs text-red-500 mt-1">→ Chapter Five: Diagon Alley</p>
-            </div>
+    function renderPosts() {
+      postContainer.innerHTML = "";
+      if (posts.length === 0) {
+        postContainer.innerHTML = "<p class='text-center text-gray-500'>😕 কোনো পোস্ট নেই</p>";
+        return;
+      }
+
+      posts.forEach(post => {
+        const div = document.createElement("div");
+        div.className = "p-3 border rounded-md bg-gray-50 shadow-sm";
+        div.innerHTML = `
+          <p class="text-gray-800 mb-2">${post.text}</p>
+          ${post.image ? `<img src="${post.image}" class="w-full rounded-md mb-2">` : ""}
+          <span class="text-xs text-gray-500 block mb-2">${post.time}</span>
+
+          <div class="flex justify-between items-center">
+            <button class="like-btn ${post.liked ? 'text-red-500' : 'text-gray-600'}">❤️ ${post.likes}</button>
+            <button class="delete-btn text-red-500 hover:text-red-700">🗑️</button>
           </div>
 
-          <div class="flex items-start space-x-3">
-            <img src="https://i.pravatar.cc/40?img=3" class="w-10 h-10 rounded-full" alt="">
-            <div>
-              <p class="font-medium">Anna Henry</p>
-              <p class="text-sm text-gray-600">“I finished reading the chapter last night and...”</p>
+          <div class="mt-3">
+            <div class="space-y-1 comment-list"></div>
+            <div class="flex mt-2">
+              <input type="text" class="comment-input w-full p-2 border rounded-l-md focus:outline-none" placeholder="Comment...">
+              <button class="comment-btn bg-blue-600 text-white px-3 rounded-r-md hover:bg-blue-700">Post</button>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        `;
+        postContainer.appendChild(div);
 
+        // Like button
+        const likeBtn = div.querySelector(".like-btn");
+        likeBtn.addEventListener("click", () => {
+          post.liked = !post.liked;
+          post.likes += post.liked ? 1 : -1;
+          saveAndRender();
+        });
+
+        // Delete button
+        const deleteBtn = div.querySelector(".delete-btn");
+        deleteBtn.addEventListener("click", () => {
+          if (confirm("if you sure, delet the post!")) {
+            posts = posts.filter(p => p.id !== post.id);
+            saveAndRender();
+          }
+        });
+
+        // Comments
+        const commentInput = div.querySelector(".comment-input");
+        const commentBtn = div.querySelector(".comment-btn");
+        const commentList = div.querySelector(".comment-list");
+
+        function renderComments() {
+          commentList.innerHTML = "";
+          post.comments.forEach(c => {
+            const p = document.createElement("p");
+            p.className = "text-sm text-gray-700 border-b py-1";
+            p.textContent = c;
+            commentList.appendChild(p);
+          });
+        }
+
+        renderComments();
+
+        commentBtn.addEventListener("click", () => {
+          const comment = commentInput.value.trim();
+          if (comment === "") return;
+          post.comments.push(comment);
+          commentInput.value = "";
+          renderComments();
+          saveAndRender();
+        });
+      });
+    }
+
+    function saveAndRender() {
+      localStorage.setItem("sharedPosts", JSON.stringify(posts));
+      renderPosts();
+    }
+  </script>
+  <!-- <script src="js/script.js"></script> -->
 </body>
 </html>
